@@ -23,4 +23,12 @@ public interface KafkaBrokerDataAddressSchema {
     String SECURITY_PROTOCOL = EDC_NAMESPACE + "kafka.security.protocol";
     String SASL_MECHANISM = EDC_NAMESPACE + "kafka.sasl.mechanism";
 
+    // Kerberos (GSSAPI) specific properties
+    String KERBEROS_PRINCIPAL = EDC_NAMESPACE + "kerberos.principal";
+    String KERBEROS_SERVICE_NAME = EDC_NAMESPACE + "kerberos.service.name";
+    String KERBEROS_KEYTAB_PATH = EDC_NAMESPACE + "kerberos.keytab.path";
+
+    String SASL_MECHANISM_OAUTHBEARER = "OAUTHBEARER";
+    String SASL_MECHANISM_GSSAPI = "GSSAPI";
+
 }

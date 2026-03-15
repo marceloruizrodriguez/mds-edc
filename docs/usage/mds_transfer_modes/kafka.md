@@ -6,7 +6,8 @@ The provider's data must be available in a **Kafka topic**. The MDS connector su
 
 - Apache Kafka or Kafka-compatible brokers
 - OAuth2/OIDC authentication (OAUTHBEARER mechanism)
-- SASL_PLAINTEXT security protocol
+- Kerberos authentication (GSSAPI mechanism) — see [Kafka Kerberos](./kafka-kerberos.md)
+- SASL_PLAINTEXT and SASL_SSL security protocols
 
 ### Data Address Properties
 
