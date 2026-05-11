@@ -35,7 +35,7 @@ services:
 
       # Vault Configuration
       EDC_VAULT_HASHICORP_URL: "http://vault:8200"
-      EDC_VAULT_HASHICORP_TOKEN: ${VAULT_TOKEN:-root}
+      EDC_VAULT_HASHICORP_TOKEN: ${EDC_VAULT_HASHICORP_TOKEN}
 
       # Database Configuration
       EDC_DATASOURCE_DEFAULT_URL: "jdbc:postgresql://postgres:5432/edc?currentSchema=mds_edc_schema"
