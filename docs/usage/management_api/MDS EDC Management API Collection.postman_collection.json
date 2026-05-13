@@ -1255,6 +1255,70 @@
     {
       "key": "management_url",
       "value": "http://localhost:8182/api/management"
+    },
+    {
+      "key": "counterPartyAddress",
+      "value": "https://<provider-connector-host>/api/dsp"
+    },
+    {
+      "key": "counterPartyId",
+      "value": "<provider-connector-participant-id>"
+    },
+    {
+      "key": "assetId",
+      "value": ""
+    },
+    {
+      "key": "datasetId",
+      "value": ""
+    },
+    {
+      "key": "policyId",
+      "value": ""
+    },
+    {
+      "key": "accessPolicyId",
+      "value": ""
+    },
+    {
+      "key": "contractPolicyId",
+      "value": ""
+    },
+    {
+      "key": "definitionId",
+      "value": ""
+    },
+    {
+      "key": "contractId",
+      "value": ""
+    },
+    {
+      "key": "offerId",
+      "value": ""
+    },
+    {
+      "key": "negotiationId",
+      "value": ""
+    },
+    {
+      "key": "agreementId",
+      "value": ""
+    },
+    {
+      "key": "transferProcessId",
+      "value": ""
+    },
+    {
+      "key": "assignerId",
+      "value": ""
+    },
+    {
+      "key": "reason",
+      "value": ""
+    },
+    {
+      "key": "id",
+      "value": ""
     }
   ]
 }
