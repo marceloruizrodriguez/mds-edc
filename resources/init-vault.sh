@@ -1,18 +1,43 @@
 #!/bin/bash
 
 # Exit immediately if a command exits with a non-zero status
+
+mkdir /usr/local/share/ca-certificates/
+cp /certificate/* /usr/local/share/ca-certificates/
+cat /usr/local/share/ca-certificates/POST-PRIVATE-ROOT-CA.crt  >> /etc/ssl/certs/ca-certificates.crt
+cat /usr/local/share/ca-certificates/POST-PRIVATE-ISSUING-CA.crt >> /etc/ssl/certs/ca-certificates.crt
+cat /usr/local/share/ca-certificates/decrypt-ecdsa.corp.post.lu.crt >> /etc/ssl/certs/ca-certificates.crt
 set -e
 
 if [ -z "$VAULT_ADDR" ]; then
     export VAULT_ADDR="http://127.0.0.1:8200"
 fi
-
+VAR_NAME="${1:-}"
+PASS_VAR_NAME="${2:-}"
+SUFFIX="${3:-}"
 # Check if P12_FILE_PATH is set
-if [ -z "$P12_FILE_PATH" ]; then
-    echo "Error: P12_FILE_PATH environment variable is not set."
-    exit 1
+#if [ -z "$P12_FILE_PATH" ]; then
+#    echo "Error: P12_FILE_PATH environment variable is not set."
+#    exit 1
+#fi
+P12_CONTENT="${!VAR_NAME:-}"
+P12_PASSWORD="${!PASS_VAR_NAME:-}"
+export P12_CONTENT
+export P12_PASSWORD
+if [ -z "$VAR_NAME" ] || [ -z "$PASS_VAR_NAME" ] || [ -z "$SUFFIX" ]; then
+  echo "Usage: $0 <P12_CONTENT_ENV_NAME> <P12_PASSWORD_ENV_NAME> <suffix>"
+  exit 1
 fi
-export P12_CONTENT=$(base64 -i $P12_FILE_PATH)
+
+if [ -z "${!VAR_NAME:-}" ]; then
+  echo "Error: env var '$VAR_NAME' not set or empty"
+  exit 1
+fi
+
+if [ -z "${!PASS_VAR_NAME:-}" ]; then
+  echo "Error: env var '$PASS_VAR_NAME' not set or empty"
+  exit 1
+fi
 
 # Check if VAULT_TOKEN is set
 if [ -z "$VAULT_TOKEN" ]; then
@@ -99,11 +124,11 @@ add_secret() {
 
 # Add secrets from JSON files
 echo "Adding secrets to Vault..."
-add_secret "secret/transfer-proxy-token-signer-private-key" "transfer-proxy-token-signer-private-key.json"
-add_secret "secret/transfer-proxy-token-signer-public-key" "transfer-proxy-token-signer-public-key.json"
+add_secret "secret/transfer-proxy-token-signer-private-key${SUFFIX}" "transfer-proxy-token-signer-private-key.json"
+add_secret "secret/transfer-proxy-token-signer-public-key${SUFFIX}" "transfer-proxy-token-signer-public-key.json"
 
-add_secret "secret/daps-private-key" "daps-private-key.json"
-add_secret "secret/daps-public-key" "daps-public-key.json"
+add_secret "secret/daps-private-key${SUFFIX}" "daps-private-key.json"
+add_secret "secret/daps-public-key${SUFFIX}" "daps-public-key.json"
 
 rm temp.p12 *.line
 echo "Vault initialization complete."
