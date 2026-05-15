@@ -25,8 +25,8 @@ services:
       # OAuth and IAM Configuration
       EDC_OAUTH_TOKEN_URL: ${DAPS_URL}/token
       EDC_OAUTH_CLIENT_ID: ${EDC_OAUTH_CLIENT_ID:-my_client_id}
-      EDC_OAUTH_PRIVATE_KEY_ALIAS: "daps-private-key"
-      EDC_OAUTH_CERTIFICATE_ALIAS: "daps-public-key"
+      EDC_OAUTH_PRIVATE_KEY_ALIAS: "daps-private-key1"
+      EDC_OAUTH_CERTIFICATE_ALIAS: "daps-public-key1"
       EDC_OAUTH_PROVIDER_JWKS_URL: ${DAPS_URL}/certs
       EDC_IAM_TOKEN_SCOPE: "idsc:IDS_CONNECTOR_ATTRIBUTES_ALL"
       EDC_OAUTH_PROVIDER_AUDIENCE: ${DAPS_URL}/token
@@ -64,8 +64,8 @@ services:
       EDC_DATAPLANE_API_PUBLIC_BASEURL: "https://${EDC_HOSTNAME}/public"
 
       # Transfer Proxy Configuration
-      EDC_TRANSFER_PROXY_TOKEN_VERIFIER_PUBLICKEY_ALIAS: "transfer-proxy-token-signer-public-key"
-      EDC_TRANSFER_PROXY_TOKEN_SIGNER_PRIVATEKEY_ALIAS: "transfer-proxy-token-signer-private-key"
+      EDC_TRANSFER_PROXY_TOKEN_VERIFIER_PUBLICKEY_ALIAS: "transfer-proxy-token-signer-public-key1"
+      EDC_TRANSFER_PROXY_TOKEN_SIGNER_PRIVATEKEY_ALIAS: "transfer-proxy-token-signer-private-key1"
 
       # Logging House Configuration
       EDC_LOGGINGHOUSE_EXTENSION_ENABLED: "true"
